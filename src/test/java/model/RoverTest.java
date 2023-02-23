@@ -390,6 +390,30 @@ class RoverTest {
     //THEN
     assertThat(rover,is(rover(position(6, 4), Direction.N, planet(10))));
   }
+
+  @Test
+  void roverContinueMoveAfterCorssTheBorderWest(){
+    //GIVEN
+    Rover rover = new Rover(position(9,5), Direction.W, planet(10));
+
+    //WHEN
+    rover.execute("brf");
+
+    //THEN
+    assertThat(rover,is(rover(position(0, 6), Direction.N, planet(10))));
+  }
+  @Test
+  void roverContinueMoveAfterCorssTheBorderSouth(){
+    //GIVEN
+    Rover rover = new Rover(position(5,0), Direction.S, planet(10));
+
+    //WHEN
+    rover.execute("flf");
+
+    //THEN
+    assertThat(rover,is(rover(position(6, 9), Direction.E, planet(10))));
+  }
+
   private Position position(int x, int y) {
     return new Position(x, y);
   }
