@@ -1,10 +1,14 @@
 package model;
 
+import java.util.Set;
+
 public class Planet {
     int dimension;
+    Set<Obstacle> obstacles;
 
-    public Planet(int dimension) {
+    public Planet(int dimension, Set<Obstacle> obstacles) {
         this.dimension = dimension;
+        this.obstacles = obstacles;
     }
 
     public boolean inUpperBorder(int y) {

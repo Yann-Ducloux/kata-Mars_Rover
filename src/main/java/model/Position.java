@@ -1,5 +1,7 @@
 package model;
 
+import exception.ObstacleException;
+
 import java.util.Objects;
 
 /**
@@ -17,6 +19,9 @@ public class Position {
         this.y = y;
     }
     public void forward(Direction direction, Planet planet) {
+        if(planet.obstacles!= null) {
+            throw new ObstacleException(5, 6);
+        }
         switch (direction) {
             case N:
                 if(planet.inUpperBorder(y)) {

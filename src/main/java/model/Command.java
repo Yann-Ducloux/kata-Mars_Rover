@@ -2,7 +2,7 @@ package model;
 
 import exception.CommandEmptyException;
 import exception.LetterUnknownException;
-import exception.NullCommandExecute;
+import exception.NullCommandException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +31,7 @@ public enum Command {
     public static List<Command> transcription(String commands) {
         try {
             if(commands == null) {
-                throw new NullCommandExecute();
+                throw new NullCommandException();
             }
             if(commands.isEmpty()) {
                 throw new CommandEmptyException();

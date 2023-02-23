@@ -2,18 +2,24 @@ package model;
 
 import exception.CommandEmptyException;
 import exception.LetterUnknownException;
-import exception.NullCommandExecute;
+import exception.NullCommandException;
+import exception.ObstacleException;
 import org.junit.jupiter.api.Test;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RoverTest {
   @Test
   void roverForwardNorth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("f");
@@ -25,7 +31,7 @@ class RoverTest {
   @Test
   void roverBackwardNorth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("b");
@@ -36,7 +42,7 @@ class RoverTest {
   @Test
   void roverForwardAndBackwardNorth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("ffb");
@@ -47,7 +53,7 @@ class RoverTest {
   @Test
   void roverForwardSouth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.S, planet(10, null));
 
     //WHEN
     rover.execute("f");
@@ -58,7 +64,7 @@ class RoverTest {
   @Test
   void roverBackwardSouth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.S, planet(10, null));
 
     //WHEN
     rover.execute("b");
@@ -69,7 +75,7 @@ class RoverTest {
   @Test
   void roverForwardAndBackwardSouth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.S, planet(10, null));
 
     //WHEN
     rover.execute("bbf");
@@ -80,7 +86,7 @@ class RoverTest {
   @Test
   void roverForwardWest(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.W, planet(10, null));
 
     //WHEN
     rover.execute("f");
@@ -91,7 +97,7 @@ class RoverTest {
   @Test
   void roverBackwardWest(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.W, planet(10, null));
 
     //WHEN
     rover.execute("b");
@@ -102,7 +108,7 @@ class RoverTest {
   @Test
   void roverForwardAndBackwardWest(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.W, planet(10, null));
 
     //WHEN
     rover.execute("fbf");
@@ -113,7 +119,7 @@ class RoverTest {
   @Test
   void roverForwardEast(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.E, planet(10, null));
 
     //WHEN
     rover.execute("f");
@@ -124,7 +130,7 @@ class RoverTest {
   @Test
   void roverBackwardEast(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.E, planet(10, null));
 
     //WHEN
     rover.execute("b");
@@ -135,7 +141,7 @@ class RoverTest {
   @Test
   void roverForwardAndBackwardEast(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.E, planet(10, null));
 
     //WHEN
     rover.execute("bfb");
@@ -147,7 +153,7 @@ class RoverTest {
   @Test
   void roverLetterUnknown(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     assertThrows(LetterUnknownException.class, () -> {
@@ -160,10 +166,10 @@ class RoverTest {
   @Test
   void roverCommandNull(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
-    assertThrows(NullCommandExecute.class, () -> {
+    assertThrows(NullCommandException.class, () -> {
       rover.execute(null);
     });
 
@@ -174,7 +180,7 @@ class RoverTest {
   @Test
   void roverCommandEmpty(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     assertThrows(CommandEmptyException.class, () -> {
@@ -188,7 +194,7 @@ class RoverTest {
   @Test
   void roverTurnRight1Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("r");
@@ -199,7 +205,7 @@ class RoverTest {
   @Test
   void roverTurnRight2Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("rr");
@@ -210,7 +216,7 @@ class RoverTest {
   @Test
   void roverTurnRight3Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("rrr");
@@ -221,7 +227,7 @@ class RoverTest {
   @Test
   void roverTurnRight4Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("rrrr");
@@ -233,7 +239,7 @@ class RoverTest {
   @Test
   void roverTurnLeft1Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("l");
@@ -244,7 +250,7 @@ class RoverTest {
   @Test
   void roverTurnLeft2Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("ll");
@@ -255,7 +261,7 @@ class RoverTest {
   @Test
   void roverTurnLeft3Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("lll");
@@ -266,7 +272,7 @@ class RoverTest {
   @Test
   void roverTurnLeft4Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("rrrr");
@@ -277,7 +283,7 @@ class RoverTest {
   @Test
   void roverForwardNorthBorder(){
     //GIVEN
-    Rover rover = new Rover(position(5,9), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,9), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("f");
@@ -288,7 +294,7 @@ class RoverTest {
   @Test
   void roverBackwardNorthBorder(){
     //GIVEN
-    Rover rover = new Rover(position(5,0), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,0), Direction.N, planet(10, null));
 
     //WHEN
     rover.execute("b");
@@ -299,7 +305,7 @@ class RoverTest {
   @Test
   void roverForwardSouthBorder(){
     //GIVEN
-    Rover rover = new Rover(position(5,0), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,0), Direction.S, planet(10, null));
 
     //WHEN
     rover.execute("f");
@@ -310,7 +316,7 @@ class RoverTest {
   @Test
   void roverBackwardSouthBorder(){
     //GIVEN
-    Rover rover = new Rover(position(5,9), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,9), Direction.S, planet(10, null));
 
     //WHEN
     rover.execute("b");
@@ -322,7 +328,7 @@ class RoverTest {
   @Test
   void roverForwardEastBorder(){
     //GIVEN
-    Rover rover = new Rover(position(9,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(9,5), Direction.E, planet(10, null));
 
     //WHEN
     rover.execute("f");
@@ -334,7 +340,7 @@ class RoverTest {
   @Test
   void roverBackwardEastBorder(){
     //GIVEN
-    Rover rover = new Rover(position(0,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(0,5), Direction.E, planet(10, null));
 
     //WHEN
     rover.execute("b");
@@ -346,7 +352,7 @@ class RoverTest {
   @Test
   void roverForwardWestBorder(){
     //GIVEN
-    Rover rover = new Rover(position(0,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(0,5), Direction.W, planet(10, null));
 
     //WHEN
     rover.execute("f");
@@ -358,7 +364,7 @@ class RoverTest {
   @Test
   void roverBackwardWestBorder(){
     //GIVEN
-    Rover rover = new Rover(position(9,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(9,5), Direction.W, planet(10, null));
 
     //WHEN
     rover.execute("b");
@@ -370,7 +376,7 @@ class RoverTest {
   @Test
   void roverTurnAndBackward(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.W, planet(10, null));
 
     //WHEN
     rover.execute("flf");
@@ -382,7 +388,7 @@ class RoverTest {
   @Test
   void roverTurnAndForward(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.W, planet(10, null));
 
     //WHEN
     rover.execute("brb");
@@ -394,7 +400,7 @@ class RoverTest {
   @Test
   void roverContinueMoveAfterCorssTheBorderWest(){
     //GIVEN
-    Rover rover = new Rover(position(9,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(9,5), Direction.W, planet(10, null));
 
     //WHEN
     rover.execute("brf");
@@ -405,13 +411,27 @@ class RoverTest {
   @Test
   void roverContinueMoveAfterCorssTheBorderSouth(){
     //GIVEN
-    Rover rover = new Rover(position(5,0), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,0), Direction.S, planet(10, null));
 
     //WHEN
     rover.execute("flf");
 
     //THEN
     assertThat(rover,is(rover(position(6, 9), Direction.E, planet(10))));
+  }
+  @Test
+  void roverForwardNorthObstacle(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, obstacles(obstacle(5, 6))));
+
+    //WHEN
+    Exception exception = assertThrows(ObstacleException.class, () -> {
+      rover.execute("f");
+    });
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (5, 6)")));
   }
 
   private Position position(int x, int y) {
@@ -422,6 +442,30 @@ class RoverTest {
   }
 
   private Planet planet(int dimension) {
-    return new Planet(dimension);
+    return new Planet(dimension, null);
+  }
+
+  private Planet planet(int dimension, Set<Obstacle> obstacles) {
+    return new Planet(dimension, obstacles);
+  }
+
+
+  private Obstacle obstacle(int x, int y) {
+    return new Obstacle(x, y);
+  }
+
+  private Set<Obstacle> obstacles(Obstacle... obstacles) {
+    Set<Obstacle> obstacleSet = new HashSet<>();
+    if(obstacles != null) {
+        for (Obstacle obstacle: obstacles) {
+          obstacleSet.add(obstacle);
+        }
+    }
+    return obstacleSet;
+  }
+
+
+  private String messageError(String s) {
+    return s;
   }
 }
