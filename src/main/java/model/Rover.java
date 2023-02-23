@@ -8,10 +8,12 @@ import java.util.stream.Stream;
 public class Rover {
     private Position position;
     private Direction direction;
+    private Planet planet;
 
-    public Rover(Position position, Direction direction) {
+    public Rover(Position position, Direction direction, Planet planet) {
         this.position = position;
         this.direction = direction;
+        this.planet = planet;
     }
 
     public void forward() {
