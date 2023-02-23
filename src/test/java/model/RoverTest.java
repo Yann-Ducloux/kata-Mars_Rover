@@ -1,9 +1,14 @@
 package model;
 
+import exception.CommandEmptyException;
+import exception.LetterUnknownException;
+import exception.NullCommandExecute;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class RoverTest {
   @Test
   void roverForwardNorth(){
@@ -138,6 +143,46 @@ class RoverTest {
     assertThat(rover,is(rover(position(4, 5), Direction.E)));
   }
 
+  @Test
+  void roverLetterUnknown(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    assertThrows(LetterUnknownException.class, () -> {
+      rover.execute("bfy");
+    });
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.N)));
+  }
+  @Test
+  void roverCommandNull(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    assertThrows(NullCommandExecute.class, () -> {
+      rover.execute(null);
+    });
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.N)));
+  }
+
+  @Test
+  void roverCommandEmpty(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    assertThrows(CommandEmptyException.class, () -> {
+      rover.execute("");
+    });
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.N)));
+  }
   private Position position(int x, int y) {
     return new Position(x, y);
   }
