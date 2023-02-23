@@ -8,4 +8,8 @@ public class Rover {
         this.position = position;
         this.direction = direction;
     }
+
+    public void receiveCommands(String commands){
+
+    }
 }
