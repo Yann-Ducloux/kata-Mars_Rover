@@ -24,65 +24,65 @@ public class Position {
         }
         switch (direction) {
             case N:
-                if(planet.inUpperBorder(y)) {
-                    this.y=0;
-                } else {
-                    this.y++;
-                }
+                yIncrease(planet);
                 break;
             case S:
-                if(planet.inLowerBorder(y)) {
-                    this.y = planet.border();
-                } else {
-                    this.y--;
-                }
+                yDecreases(planet);
                 break;
             case E:
-                if(planet.inUpperBorder(x)) {
-                    this.x=0;
-                } else {
-                    this.x++;
-                }
+                xIncrease(planet);
                 break;
             case W:
-                if(planet.inLowerBorder(x)) {
-                    this.x=planet.border();
-                } else {
-                    this.x--;
-                }
+                xDecreases(planet);
                 break;
         }
     }
     public void backward(Direction direction, Planet planet) {
         switch (direction) {
             case N:
-                if(planet.inLowerBorder(y)) {
-                    this.y= planet.border();
-                } else {
-                    this.y--;
-                }
+                yDecreases(planet);
                 break;
             case S:
-                if(planet.inUpperBorder(y)) {
-                    this.y= 0;
-                } else {
-                    this.y++;
-                }
+                yIncrease(planet);
                 break;
             case E:
-                if(planet.inLowerBorder(x)) {
-                    this.x= planet.border();
-                } else {
-                    this.x--;
-                }
+                xDecreases(planet);
                 break;
             case W:
-                if(planet.inUpperBorder(x)) {
-                    this.x = 0;
-                } else {
-                    this.x++;
-                }
+                xIncrease(planet);
                 break;
+        }
+    }
+
+    public void xIncrease(Planet planet){
+        if(planet.inUpperBorder(this.x)) {
+            this.x = 0;
+        } else {
+            this.x++;
+        }
+    }
+
+    public void xDecreases(Planet planet){
+        if(planet.inLowerBorder(this.x)) {
+            this.x = planet.border();
+        } else {
+            this.x--;
+        }
+    }
+
+    public void yIncrease(Planet planet){
+        if(planet.inUpperBorder(this.y)) {
+            this.y = 0;
+        } else {
+            this.y++;
+        }
+    }
+
+    public void yDecreases(Planet planet) {
+        if (planet.inLowerBorder(this.y)) {
+            this.y = planet.border();
+        } else {
+            this.y--;
         }
     }
 
