@@ -1,7 +1,7 @@
 package model;
 
 public class Planet {
-    private int dimension;
+    int dimension;
 
     public Planet(int dimension) {
         this.dimension = dimension;

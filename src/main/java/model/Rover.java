@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Rover {
-    private Position position;
-    private Direction direction;
-    private Planet planet;
+    Position position;
+    Direction direction;
+    Planet planet;
 
     public Rover(Position position, Direction direction, Planet planet) {
         this.position = position;
