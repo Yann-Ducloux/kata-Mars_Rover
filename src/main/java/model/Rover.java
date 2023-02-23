@@ -17,17 +17,18 @@ public class Rover {
     public void forward() {
         this.position.forward(this.direction);
     }
-
     public void backward() {
        this.position.backward(this.direction);
     }
-
     public List<Command> receiveCommands(String commands){;
         return Command.transcription(commands);
     }
-
     public void execute(String commandStrings) {
         List<Command> commands = receiveCommands(commandStrings);
+        executeCommands(commands);
+    }
+
+    public void executeCommands(List<Command> commands) {
         for (Command command : commands) {
             switch (command) {
                 case f:
