@@ -17,10 +17,10 @@ public class Rover {
     }
 
     public void forward() {
-        this.position.forward(this.direction);
+        this.position.forward(this.direction, this.planet);
     }
     public void backward() {
-       this.position.backward(this.direction);
+       this.position.backward(this.direction, this.planet);
     }
 
     public void turnRight() {

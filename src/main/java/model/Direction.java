@@ -59,7 +59,6 @@ public enum Direction {
             return Direction.S;
         }
     };
-    Direction() {}
     public abstract  Direction turnRight();
     public abstract  Direction turnLeft();
 

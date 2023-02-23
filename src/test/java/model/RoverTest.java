@@ -274,7 +274,98 @@ class RoverTest {
     //THEN
     assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
   }
+  @Test
+  void roverForwardNorthBorder(){
+    //GIVEN
+    Rover rover = new Rover(position(5,9), Direction.N, planet(10));
 
+    //WHEN
+    rover.execute("f");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 0), Direction.N, planet(10))));
+  }
+  @Test
+  void roverBackwardNorthBorder(){
+    //GIVEN
+    Rover rover = new Rover(position(5,0), Direction.N, planet(10));
+
+    //WHEN
+    rover.execute("b");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 9), Direction.N, planet(10))));
+  }
+  @Test
+  void roverForwardSouthBorder(){
+    //GIVEN
+    Rover rover = new Rover(position(5,0), Direction.S, planet(10));
+
+    //WHEN
+    rover.execute("f");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 9), Direction.S, planet(10))));
+  }
+  @Test
+  void roverBackwardSouthBorder(){
+    //GIVEN
+    Rover rover = new Rover(position(5,9), Direction.S, planet(10));
+
+    //WHEN
+    rover.execute("b");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 0), Direction.S, planet(10))));
+  }
+
+  @Test
+  void roverForwardEastBorder(){
+    //GIVEN
+    Rover rover = new Rover(position(9,5), Direction.E, planet(10));
+
+    //WHEN
+    rover.execute("f");
+
+    //THEN
+    assertThat(rover,is(rover(position(0, 5), Direction.E, planet(10))));
+  }
+
+  @Test
+  void roverBackwardEastBorder(){
+    //GIVEN
+    Rover rover = new Rover(position(0,5), Direction.E, planet(10));
+
+    //WHEN
+    rover.execute("b");
+
+    //THEN
+    assertThat(rover,is(rover(position(9, 5), Direction.E, planet(10))));
+  }
+
+  @Test
+  void roverForwardWestBorder(){
+    //GIVEN
+    Rover rover = new Rover(position(0,5), Direction.W, planet(10));
+
+    //WHEN
+    rover.execute("f");
+
+    //THEN
+    assertThat(rover,is(rover(position(9, 5), Direction.W, planet(10))));
+  }
+
+  @Test
+  void roverBackwardWestBorder(){
+    //GIVEN
+    Rover rover = new Rover(position(9,5), Direction.W, planet(10));
+
+    //WHEN
+    rover.execute("b");
+
+    //THEN
+    assertThat(rover,is(rover(position(0, 5), Direction.W, planet(10))));
+  }
   private Position position(int x, int y) {
     return new Position(x, y);
   }

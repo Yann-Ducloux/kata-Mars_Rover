@@ -16,35 +16,67 @@ public class Position {
         this.x = x;
         this.y = y;
     }
-    public void forward(Direction direction) {
+    public void forward(Direction direction, Planet planet) {
         switch (direction) {
             case N:
-                this.y++;
+                if(planet.inUpperBorder(y)) {
+                    this.y=0;
+                } else {
+                    this.y++;
+                }
                 break;
             case S:
-                this.y--;
+                if(planet.inLowerBorder(y)) {
+                    this.y = planet.border();
+                } else {
+                    this.y--;
+                }
                 break;
             case E:
-                this.x++;
+                if(planet.inUpperBorder(x)) {
+                    this.x=0;
+                } else {
+                    this.x++;
+                }
                 break;
             case W:
-                this.x--;
+                if(planet.inLowerBorder(x)) {
+                    this.x=planet.border();
+                } else {
+                    this.x--;
+                }
                 break;
         }
     }
-    public void backward(Direction direction) {
+    public void backward(Direction direction, Planet planet) {
         switch (direction) {
             case N:
-                this.y--;
+                if(planet.inLowerBorder(y)) {
+                    this.y= planet.border();
+                } else {
+                    this.y--;
+                }
                 break;
             case S:
-                this.y++;
+                if(planet.inUpperBorder(y)) {
+                    this.y= 0;
+                } else {
+                    this.y++;
+                }
                 break;
             case E:
-                this.x--;
+                if(planet.inLowerBorder(x)) {
+                    this.x= planet.border();
+                } else {
+                    this.x--;
+                }
                 break;
             case W:
-                this.x++;
+                if(planet.inUpperBorder(x)) {
+                    this.x = 0;
+                } else {
+                    this.x++;
+                }
                 break;
         }
     }
