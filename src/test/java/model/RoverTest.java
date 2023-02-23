@@ -366,6 +366,30 @@ class RoverTest {
     //THEN
     assertThat(rover,is(rover(position(0, 5), Direction.W, planet(10))));
   }
+
+  @Test
+  void roverTurnAndBackward(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+
+    //WHEN
+    rover.execute("flf");
+
+    //THEN
+    assertThat(rover,is(rover(position(4, 4), Direction.S, planet(10))));
+  }
+
+  @Test
+  void roverTurnAndForward(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+
+    //WHEN
+    rover.execute("brb");
+
+    //THEN
+    assertThat(rover,is(rover(position(6, 4), Direction.N, planet(10))));
+  }
   private Position position(int x, int y) {
     return new Position(x, y);
   }
