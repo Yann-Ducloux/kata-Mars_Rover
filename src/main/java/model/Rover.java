@@ -20,6 +20,14 @@ public class Rover {
     public void backward() {
        this.position.backward(this.direction);
     }
+
+    public void turnRight() {
+        this.direction = this.direction.turnRight();
+    }
+
+    public void turnLeft() {
+        this.direction = this.direction.turnLeft();
+    }
     public List<Command> receiveCommands(String commands){;
         return Command.transcription(commands);
     }
@@ -36,6 +44,12 @@ public class Rover {
                     break;
                 case b:
                     backward();
+                    break;
+                case r:
+                    turnRight();
+                    break;
+                case l:
+                    turnLeft();
                     break;
             }
         }

@@ -16,7 +16,15 @@ public enum Command {
     /**
      * Backward
      */
-    b;
+    b,
+    /**
+     * Right
+     */
+    r,
+    /**
+     * Left
+     */
+    l;
     Command(){}
     private static final String EMPTY_FIELD = "";
 

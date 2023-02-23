@@ -183,6 +183,97 @@ class RoverTest {
     //THEN
     assertThat(rover,is(rover(position(5, 5), Direction.N)));
   }
+
+  @Test
+  void roverTurnRight1Time(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    rover.execute("r");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.E)));
+  }
+  @Test
+  void roverTurnRight2Time(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    rover.execute("rr");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.S)));
+  }
+  @Test
+  void roverTurnRight3Time(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    rover.execute("rrr");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.W)));
+  }
+  @Test
+  void roverTurnRight4Time(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    rover.execute("rrrr");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.N)));
+  }
+
+  @Test
+  void roverTurnLeft1Time(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    rover.execute("l");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.W)));
+  }
+  @Test
+  void roverTurnLeft2Time(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    rover.execute("ll");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.S)));
+  }
+  @Test
+  void roverTurnLeft3Time(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    rover.execute("lll");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.E)));
+  }
+  @Test
+  void roverTurnLeft4Time(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N);
+
+    //WHEN
+    rover.execute("rrrr");
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.N)));
+  }
+
   private Position position(int x, int y) {
     return new Position(x, y);
   }
