@@ -2,8 +2,6 @@ package model;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Rover {
     Position position;
@@ -30,7 +28,7 @@ public class Rover {
     public void turnLeft() {
         this.direction = this.direction.turnLeft();
     }
-    public List<Command> receiveCommands(String commands){;
+    public List<Command> receiveCommands(String commands) {
         return Command.transcription(commands);
     }
     public void execute(String commandStrings) {
@@ -42,9 +40,11 @@ public class Rover {
         for (Command command : commands) {
             switch (command) {
                 case f:
+                    detectionObstacleForward();
                     forward();
                     break;
                 case b:
+                    detectionObstacleBackward();
                     backward();
                     break;
                 case r:
@@ -62,6 +62,16 @@ public class Rover {
         if (o == null || getClass() != o.getClass()) return false;
         Rover rover = (Rover) o;
         return Objects.equals(position, rover.position) && direction == rover.direction;
+    }
+    public void detectionObstacleForward(){
+        Position positionCopy = new Position(this.position);
+        positionCopy.forward(this.direction, this.planet);
+        planet.isObstacle(positionCopy);
+    }
+    public void detectionObstacleBackward() {
+        Position positionCopy = new Position(this.position);
+        positionCopy.backward(this.direction, this.planet);
+        planet.isObstacle(positionCopy);
     }
 
     @Override

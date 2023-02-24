@@ -7,6 +7,7 @@ import exception.ObstacleException;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -340,7 +341,7 @@ class RoverTest {
   @Test
   void roverBackwardEastBorder(){
     //GIVEN
-    Rover rover = new Rover(position(0,5), Direction.E, planet(10, null));
+    Rover rover = new Rover(position(0,5), Direction.E, planet(10));
 
     //WHEN
     rover.execute("b");
@@ -433,6 +434,49 @@ class RoverTest {
     assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
     assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (5, 6)")));
   }
+  @Test
+  void roverBackwardNorthObstacle(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, obstacles(obstacle(5, 4))));
+
+    //WHEN
+    Exception exception = assertThrows(ObstacleException.class, () -> {
+      rover.execute("b");
+    });
+
+    //THEN
+    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (5, 4)")));
+  }
+  @Test
+  void roverObstacleInCommands(){
+    //GIVEN
+    Rover rover = new Rover(position(5,5), Direction.N, planet(10, obstacles(obstacle(2, 4))));
+
+    //WHEN
+    Exception exception = assertThrows(ObstacleException.class, () -> {
+      rover.execute("bblfflbrffrrbb");
+    });
+
+    //THEN
+    assertThat(rover,is(rover(position(3, 4), Direction.W, planet(10))));
+    assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (2, 4)")));
+  }
+  @Test
+  void roverMultipleObstaclesInCommands(){
+    //GIVEN
+    Rover rover = new Rover(position(0,0), Direction.N, planet(10, obstacles(
+            obstacle(2, 4), obstacle(1, 4), obstacle(0, 0))));
+
+    //WHEN
+    Exception exception = assertThrows(ObstacleException.class, () -> {
+      rover.execute("lblbrrfffrbblff");
+    });
+
+    //THEN
+    assertThat(rover,is(rover(position(1, 3), Direction.N, planet(10))));
+    assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (1, 4)")));
+  }
 
   private Position position(int x, int y) {
     return new Position(x, y);
@@ -442,7 +486,7 @@ class RoverTest {
   }
 
   private Planet planet(int dimension) {
-    return new Planet(dimension, null);
+    return new Planet(dimension, Collections.<Obstacle>emptySet());
   }
 
   private Planet planet(int dimension, Set<Obstacle> obstacles) {

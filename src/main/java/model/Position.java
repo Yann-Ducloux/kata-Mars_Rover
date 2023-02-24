@@ -1,7 +1,5 @@
 package model;
 
-import exception.ObstacleException;
-
 import java.util.Objects;
 
 /**
@@ -19,9 +17,6 @@ public class Position {
         this.y = y;
     }
     public void forward(Direction direction, Planet planet) {
-        if(planet.obstacles!= null) {
-            throw new ObstacleException(5, 6);
-        }
         switch (direction) {
             case N:
                 yIncrease(planet);
@@ -64,7 +59,7 @@ public class Position {
 
     public void xDecreases(Planet planet){
         if(planet.inLowerBorder(this.x)) {
-            this.x = planet.border();
+            this.x = planet.maxValue();
         } else {
             this.x--;
         }
@@ -80,7 +75,7 @@ public class Position {
 
     public void yDecreases(Planet planet) {
         if (planet.inLowerBorder(this.y)) {
-            this.y = planet.border();
+            this.y = planet.maxValue();
         } else {
             this.y--;
         }
@@ -97,5 +92,9 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+    public Position(Position position) {
+        this.x = position.x;
+        this.y = position.y;
     }
 }
