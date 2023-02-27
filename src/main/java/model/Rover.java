@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Rover {
-    Position position;
-    Direction direction;
-    Planet planet;
+    private Position position;
+    private Direction direction;
+    private Planet planet;
 
     public Rover(Position position, Direction direction, Planet planet) {
         this.position = position;

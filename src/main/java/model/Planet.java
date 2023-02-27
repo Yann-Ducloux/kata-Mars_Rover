@@ -5,8 +5,8 @@ import exception.ObstacleException;
 import java.util.Set;
 
 public class Planet {
-    int dimension;
-    Set<Obstacle> obstacles;
+    private int dimension;
+    private Set<Obstacle> obstacles;
 
     public Planet(int dimension, Set<Obstacle> obstacles) {
         this.dimension = dimension;
@@ -25,8 +25,8 @@ public class Planet {
         return dimension-1;
     }
     public void isObstacle(Position position){
-        if (obstacles != null && this.obstacles.contains(new Obstacle(position.x, position.y))) {
-            throw new ObstacleException(position.x, position.y);
+        if (obstacles != null && this.obstacles.contains(new Obstacle(position.getX(), position.getY()))) {
+            throw new ObstacleException(position.getX(), position.getY());
         }
     }
 }
