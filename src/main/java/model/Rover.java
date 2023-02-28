@@ -14,21 +14,21 @@ public class Rover {
         this.planet = planet;
     }
 
-    public void forward() {
+    private void forward() {
         this.position.forward(this.direction, this.planet);
     }
-    public void backward() {
+    private void backward() {
        this.position.backward(this.direction, this.planet);
     }
 
-    public void turnRight() {
+    private void turnRight() {
         this.direction = this.direction.turnRight();
     }
 
-    public void turnLeft() {
+    private void turnLeft() {
         this.direction = this.direction.turnLeft();
     }
-    public List<Command> receiveCommands(String commands) {
+    private List<Command> receiveCommands(String commands) {
         return Command.transcription(commands);
     }
     public void execute(String commandStrings) {
@@ -36,7 +36,7 @@ public class Rover {
         executeCommands(commands);
     }
 
-    public void executeCommands(List<Command> commands) {
+    private void executeCommands(List<Command> commands) {
         for (Command command : commands) {
             switch (command) {
                 case f:
@@ -63,12 +63,12 @@ public class Rover {
         Rover rover = (Rover) o;
         return Objects.equals(position, rover.position) && direction == rover.direction;
     }
-    public void detectionObstacleForward(){
+    private void detectionObstacleForward(){
         Position positionCopy = new Position(this.position);
         positionCopy.forward(this.direction, this.planet);
         planet.isObstacle(positionCopy);
     }
-    public void detectionObstacleBackward() {
+    private void detectionObstacleBackward() {
         Position positionCopy = new Position(this.position);
         positionCopy.backward(this.direction, this.planet);
         planet.isObstacle(positionCopy);
