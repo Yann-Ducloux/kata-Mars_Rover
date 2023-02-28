@@ -58,35 +58,20 @@ public class Position {
     }
 
     private void xIncrease(Planet planet){
-        if(planet.inUpperBorder(this.x)) {
-            this.x = 0;
-        } else {
-            this.x++;
-        }
+        this.x = (planet.inUpperBorder(this.x)) ? 0 : this.x+1;
+
     }
 
     private void xDecreases(Planet planet){
-        if(planet.inLowerBorder(this.x)) {
-            this.x = planet.maxValue();
-        } else {
-            this.x--;
-        }
+        this.x = (planet.inLowerBorder(this.x)) ? planet.maxValue() : this.x-1;
     }
 
     private void yIncrease(Planet planet){
-        if(planet.inUpperBorder(this.y)) {
-            this.y = 0;
-        } else {
-            this.y++;
-        }
+       this.y = ((planet.inUpperBorder(this.y))) ? 0 : this.y+1;
     }
 
     private void yDecreases(Planet planet) {
-        if (planet.inLowerBorder(this.y)) {
-            this.y = planet.maxValue();
-        } else {
-            this.y--;
-        }
+        this.y = ((planet.inLowerBorder(this.y))) ? planet.maxValue() : this.y-1;
     }
 
     @Override
