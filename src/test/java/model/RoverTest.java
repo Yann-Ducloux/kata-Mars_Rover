@@ -475,6 +475,22 @@ class RoverTest {
     assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (1, 4)")));
   }
 
+
+  @Test
+  void roverForwardEastBorderObstacle(){
+    //GIVEN
+    Rover rover = new Rover(position(8,5), Direction.EAST, planet(10, obstacles(obstacle(0, 5))));
+
+    //WHEN
+    Exception exception = assertThrows(ObstacleException.class, () -> {
+      rover.execute("fff");
+    });
+
+
+    //THEN
+    assertThat(rover,is(rover(position(9, 5), Direction.EAST, planet(10))));
+    assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (0, 5)")));
+  }
   private Position position(int x, int y) {
     return new Position(x, y);
   }
