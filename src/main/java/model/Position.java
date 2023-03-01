@@ -8,9 +8,14 @@ import java.util.Objects;
  * @author Yann Ducloux
  * définit la position
  */
-public class Position {
-    private int x;
-    private int y;
+public class Position extends Coordinate {
+
+    public Position(int x, int y) {
+        super(x, y);
+    }
+    public Position(Position position) {
+        super(position.getX(), position.getY());
+    }
 
     public int getX() {
         return x;
@@ -20,58 +25,49 @@ public class Position {
         return y;
     }
 
-    public Position(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-    public void forward(Direction direction, Planet planet) {
+    public Position forward(Direction direction, Planet planet) {
         switch (direction) {
             case N:
-                yIncrease(planet);
-                break;
+                return yIncrease(planet);
             case S:
-                yDecreases(planet);
-                break;
+                return yDecreases(planet);
             case E:
-                xIncrease(planet);
-                break;
+                return xIncrease(planet);
             case W:
-                xDecreases(planet);
-                break;
+                return xDecreases(planet);
+            default:
+                throw new RuntimeException();
         }
     }
-    public void backward(Direction direction, Planet planet) {
+    public Position backward(Direction direction, Planet planet) {
         switch (direction) {
             case N:
-                yDecreases(planet);
-                break;
+                return yDecreases(planet);
             case S:
-                yIncrease(planet);
-                break;
+                return yIncrease(planet);
             case E:
-                xDecreases(planet);
-                break;
+                return xDecreases(planet);
             case W:
-                xIncrease(planet);
-                break;
+                return xIncrease(planet);
+            default:
+                throw new RuntimeException();
         }
     }
 
-    private void xIncrease(Planet planet){
-        this.x = planet.inUpperBorder(this.x) ? 0 : this.x+1;
-
+    private Position xIncrease(Planet planet){
+        return planet.inUpperBorder(this.x) ? new Position(0, this.y) : new Position(this.x+1, this.y);
     }
 
-    private void xDecreases(Planet planet){
-        this.x = planet.inLowerBorder(this.x) ? planet.maxValue() : this.x-1;
+    private Position xDecreases(Planet planet){
+        return planet.inLowerBorder(this.x) ? new Position(planet.maxValue(), this.y) : new Position(this.x-1, this.y);
     }
 
-    private void yIncrease(Planet planet){
-       this.y = planet.inUpperBorder(this.y) ? 0 : this.y+1;
+    private Position yIncrease(Planet planet){
+       return planet.inUpperBorder(this.y) ? new Position(this.x, 0) : new Position(x,this.y+1);
     }
 
-    private void yDecreases(Planet planet) {
-        this.y = planet.inLowerBorder(this.y) ? planet.maxValue() : this.y-1;
+    private Position yDecreases(Planet planet) {
+        return planet.inLowerBorder(this.y) ? new Position(this.x, planet.maxValue()) : new Position(this.x, this.y-1);
     }
 
     @Override
@@ -86,8 +82,9 @@ public class Position {
     public int hashCode() {
         return Objects.hash(x, y);
     }
-    public Position(Position position) {
-        this.x = position.x;
-        this.y = position.y;
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ')';
     }
 }

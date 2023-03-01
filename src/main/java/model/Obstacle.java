@@ -1,12 +1,9 @@
 package model;
 
-public class Obstacle {
-    private int x;
-    private int y;
+public class Obstacle extends Coordinate{
 
     public Obstacle(int x, int y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
     }
 
     @Override

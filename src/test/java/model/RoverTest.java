@@ -6,10 +6,7 @@ import exception.NullCommandException;
 import exception.ObstacleException;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -486,10 +483,10 @@ class RoverTest {
   }
 
   private Planet planet(int dimension) {
-    return new Planet(dimension, Collections.<Obstacle>emptySet());
+    return new Planet(dimension, java.util.List.of());
   }
 
-  private Planet planet(int dimension, Set<Obstacle> obstacles) {
+  private Planet planet(int dimension, List<Obstacle> obstacles) {
     return new Planet(dimension, obstacles);
   }
 
@@ -498,8 +495,8 @@ class RoverTest {
     return new Obstacle(x, y);
   }
 
-  private Set<Obstacle> obstacles(Obstacle... obstacles) {
-    Set<Obstacle> obstacleSet = new HashSet<>();
+  private List<Obstacle> obstacles(Obstacle... obstacles) {
+    List<Obstacle> obstacleSet = new ArrayList<>();
     if(obstacles != null) {
         for (Obstacle obstacle: obstacles) {
           obstacleSet.add(obstacle);

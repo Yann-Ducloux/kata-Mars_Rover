@@ -29,13 +29,13 @@ public enum Command {
     private static final String EMPTY_FIELD = "";
 
     public static List<Command> transcription(String commands) {
+        if(commands == null) {
+            throw new NullCommandException();
+        }
+        if(commands.isEmpty()) {
+            throw new CommandEmptyException();
+        }
         try {
-            if(commands == null) {
-                throw new NullCommandException();
-            }
-            if(commands.isEmpty()) {
-                throw new CommandEmptyException();
-            }
             return Stream.of(commands.split(EMPTY_FIELD))
                     .map(Command::valueOf)
                     .collect(Collectors.toList());

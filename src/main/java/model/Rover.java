@@ -14,13 +14,6 @@ public class Rover {
         this.planet = planet;
     }
 
-    private void forward() {
-        this.position.forward(this.direction, this.planet);
-    }
-    private void backward() {
-       this.position.backward(this.direction, this.planet);
-    }
-
     private void turnRight() {
         this.direction = this.direction.turnRight();
     }
@@ -40,12 +33,10 @@ public class Rover {
         for (Command command : commands) {
             switch (command) {
                 case f:
-                    detectionObstacleForward();
-                    forward();
+                    detectAndMove(this.position.forward(this.direction, this.planet));
                     break;
                 case b:
-                    detectionObstacleBackward();
-                    backward();
+                    detectAndMove(this.position.backward(this.direction, this.planet));
                     break;
                 case r:
                     turnRight();
@@ -56,6 +47,12 @@ public class Rover {
             }
         }
     }
+
+    private void detectAndMove(Position position) {
+        detectObstacle(position);
+        this.position = position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,15 +60,9 @@ public class Rover {
         Rover rover = (Rover) o;
         return Objects.equals(position, rover.position) && direction == rover.direction;
     }
-    private void detectionObstacleForward(){
-        Position positionCopy = new Position(this.position);
-        positionCopy.forward(this.direction, this.planet);
-        planet.isObstacle(positionCopy);
-    }
-    private void detectionObstacleBackward() {
-        Position positionCopy = new Position(this.position);
-        positionCopy.backward(this.direction, this.planet);
-        planet.isObstacle(positionCopy);
+
+    private void detectObstacle(Position nextPosition) {
+        planet.isObstacle(nextPosition);
     }
 
     @Override
