@@ -2,61 +2,49 @@ package model;
 
 public enum Direction {
 
-    /**
-     * North
-     */
-    N(){
+    NORTH(){
         @Override
         public Direction turnRight() {
-            return Direction.E;
+            return Direction.EAST;
         }
 
         @Override
         public Direction turnLeft() {
-            return Direction.W;
+            return Direction.WEST;
         }
     },
-    /**
-     * South
-     */
-    S(){
+    SOUTH(){
         @Override
         public Direction turnRight() {
-            return Direction.W;
+            return Direction.WEST;
         }
 
         @Override
         public Direction turnLeft() {
-            return Direction.E;
+            return Direction.EAST;
         }
     },
 
-    /**
-     * East
-     */
-    E(){
+    EAST(){
         @Override
         public Direction turnRight() {
-            return Direction.S;
+            return Direction.SOUTH;
         }
 
         @Override
         public Direction turnLeft() {
-            return Direction.N;
+            return Direction.NORTH;
         }
     },
-    /**
-     * West
-     */
-    W(){
+    WEST(){
         @Override
         public Direction turnRight() {
-            return Direction.N;
+            return Direction.NORTH;
         }
 
         @Override
         public Direction turnLeft() {
-            return Direction.S;
+            return Direction.SOUTH;
         }
     };
     public abstract  Direction turnRight();

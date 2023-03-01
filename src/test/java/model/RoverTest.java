@@ -17,141 +17,141 @@ class RoverTest {
   @Test
   void roverForwardNorth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("f");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 6), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 6), Direction.NORTH, planet(10))));
   }
 
   @Test
   void roverBackwardNorth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("b");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 4), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 4), Direction.NORTH, planet(10))));
   }
   @Test
   void roverForwardAndBackwardNorth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("ffb");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 6), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 6), Direction.NORTH, planet(10))));
   }
   @Test
   void roverForwardSouth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.SOUTH, planet(10));
 
     //WHEN
     rover.execute("f");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 4), Direction.S, planet(10))));
+    assertThat(rover,is(rover(position(5, 4), Direction.SOUTH, planet(10))));
   }
   @Test
   void roverBackwardSouth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.SOUTH, planet(10));
 
     //WHEN
     rover.execute("b");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 6), Direction.S, planet(10))));
+    assertThat(rover,is(rover(position(5, 6), Direction.SOUTH, planet(10))));
   }
   @Test
   void roverForwardAndBackwardSouth(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.SOUTH, planet(10));
 
     //WHEN
     rover.execute("bbf");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 6), Direction.S, planet(10))));
+    assertThat(rover,is(rover(position(5, 6), Direction.SOUTH, planet(10))));
   }
   @Test
   void roverForwardWest(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.WEST, planet(10));
 
     //WHEN
     rover.execute("f");
 
     //THEN
-    assertThat(rover,is(rover(position(4, 5), Direction.W, planet(10))));
+    assertThat(rover,is(rover(position(4, 5), Direction.WEST, planet(10))));
   }
   @Test
   void roverBackwardWest(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.WEST, planet(10));
 
     //WHEN
     rover.execute("b");
 
     //THEN
-    assertThat(rover,is(rover(position(6, 5), Direction.W, planet(10))));
+    assertThat(rover,is(rover(position(6, 5), Direction.WEST, planet(10))));
   }
   @Test
   void roverForwardAndBackwardWest(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.WEST, planet(10));
 
     //WHEN
     rover.execute("fbf");
 
     //THEN
-    assertThat(rover,is(rover(position(4, 5), Direction.W, planet(10))));
+    assertThat(rover,is(rover(position(4, 5), Direction.WEST, planet(10))));
   }
   @Test
   void roverForwardEast(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.EAST, planet(10));
 
     //WHEN
     rover.execute("f");
 
     //THEN
-    assertThat(rover,is(rover(position(6, 5), Direction.E, planet(10))));
+    assertThat(rover,is(rover(position(6, 5), Direction.EAST, planet(10))));
   }
   @Test
   void roverBackwardEast(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.EAST, planet(10));
 
     //WHEN
     rover.execute("b");
 
     //THEN
-    assertThat(rover,is(rover(position(4, 5), Direction.E, planet(10))));
+    assertThat(rover,is(rover(position(4, 5), Direction.EAST, planet(10))));
   }
   @Test
   void roverForwardAndBackwardEast(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.EAST, planet(10));
 
     //WHEN
     rover.execute("bfb");
 
     //THEN
-    assertThat(rover,is(rover(position(4, 5), Direction.E, planet(10))));
+    assertThat(rover,is(rover(position(4, 5), Direction.EAST, planet(10))));
   }
 
   @Test
   void roverLetterUnknown(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     assertThrows(LetterUnknownException.class, () -> {
@@ -159,12 +159,12 @@ class RoverTest {
     });
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.NORTH, planet(10))));
   }
   @Test
   void roverCommandNull(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     assertThrows(NullCommandException.class, () -> {
@@ -172,13 +172,13 @@ class RoverTest {
     });
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.NORTH, planet(10))));
   }
 
   @Test
   void roverCommandEmpty(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     assertThrows(CommandEmptyException.class, () -> {
@@ -186,241 +186,241 @@ class RoverTest {
     });
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.NORTH, planet(10))));
   }
 
   @Test
   void roverTurnRight1Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("r");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.E, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.EAST, planet(10))));
   }
   @Test
   void roverTurnRight2Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("rr");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.S, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.SOUTH, planet(10))));
   }
   @Test
   void roverTurnRight3Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("rrr");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.W, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.WEST, planet(10))));
   }
   @Test
   void roverTurnRight4Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("rrrr");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.NORTH, planet(10))));
   }
 
   @Test
   void roverTurnLeft1Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("l");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.W, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.WEST, planet(10))));
   }
   @Test
   void roverTurnLeft2Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("ll");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.S, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.SOUTH, planet(10))));
   }
   @Test
   void roverTurnLeft3Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("lll");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.E, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.EAST, planet(10))));
   }
   @Test
   void roverTurnLeft4Time(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("rrrr");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.NORTH, planet(10))));
   }
   @Test
   void roverForwardNorthBorder(){
     //GIVEN
-    Rover rover = new Rover(position(5,9), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,9), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("f");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 0), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 0), Direction.NORTH, planet(10))));
   }
   @Test
   void roverBackwardNorthBorder(){
     //GIVEN
-    Rover rover = new Rover(position(5,0), Direction.N, planet(10));
+    Rover rover = new Rover(position(5,0), Direction.NORTH, planet(10));
 
     //WHEN
     rover.execute("b");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 9), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 9), Direction.NORTH, planet(10))));
   }
   @Test
   void roverForwardSouthBorder(){
     //GIVEN
-    Rover rover = new Rover(position(5,0), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,0), Direction.SOUTH, planet(10));
 
     //WHEN
     rover.execute("f");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 9), Direction.S, planet(10))));
+    assertThat(rover,is(rover(position(5, 9), Direction.SOUTH, planet(10))));
   }
   @Test
   void roverBackwardSouthBorder(){
     //GIVEN
-    Rover rover = new Rover(position(5,9), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,9), Direction.SOUTH, planet(10));
 
     //WHEN
     rover.execute("b");
 
     //THEN
-    assertThat(rover,is(rover(position(5, 0), Direction.S, planet(10))));
+    assertThat(rover,is(rover(position(5, 0), Direction.SOUTH, planet(10))));
   }
 
   @Test
   void roverForwardEastBorder(){
     //GIVEN
-    Rover rover = new Rover(position(9,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(9,5), Direction.EAST, planet(10));
 
     //WHEN
     rover.execute("f");
 
     //THEN
-    assertThat(rover,is(rover(position(0, 5), Direction.E, planet(10))));
+    assertThat(rover,is(rover(position(0, 5), Direction.EAST, planet(10))));
   }
 
   @Test
   void roverBackwardEastBorder(){
     //GIVEN
-    Rover rover = new Rover(position(0,5), Direction.E, planet(10));
+    Rover rover = new Rover(position(0,5), Direction.EAST, planet(10));
 
     //WHEN
     rover.execute("b");
 
     //THEN
-    assertThat(rover,is(rover(position(9, 5), Direction.E, planet(10))));
+    assertThat(rover,is(rover(position(9, 5), Direction.EAST, planet(10))));
   }
 
   @Test
   void roverForwardWestBorder(){
     //GIVEN
-    Rover rover = new Rover(position(0,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(0,5), Direction.WEST, planet(10));
 
     //WHEN
     rover.execute("f");
 
     //THEN
-    assertThat(rover,is(rover(position(9, 5), Direction.W, planet(10))));
+    assertThat(rover,is(rover(position(9, 5), Direction.WEST, planet(10))));
   }
 
   @Test
   void roverBackwardWestBorder(){
     //GIVEN
-    Rover rover = new Rover(position(9,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(9,5), Direction.WEST, planet(10));
 
     //WHEN
     rover.execute("b");
 
     //THEN
-    assertThat(rover,is(rover(position(0, 5), Direction.W, planet(10))));
+    assertThat(rover,is(rover(position(0, 5), Direction.WEST, planet(10))));
   }
 
   @Test
   void roverTurnAndBackward(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.WEST, planet(10));
 
     //WHEN
     rover.execute("flf");
 
     //THEN
-    assertThat(rover,is(rover(position(4, 4), Direction.S, planet(10))));
+    assertThat(rover,is(rover(position(4, 4), Direction.SOUTH, planet(10))));
   }
 
   @Test
   void roverTurnAndForward(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(5,5), Direction.WEST, planet(10));
 
     //WHEN
     rover.execute("brb");
 
     //THEN
-    assertThat(rover,is(rover(position(6, 4), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(6, 4), Direction.NORTH, planet(10))));
   }
 
   @Test
   void roverContinueMoveAfterCorssTheBorderWest(){
     //GIVEN
-    Rover rover = new Rover(position(9,5), Direction.W, planet(10));
+    Rover rover = new Rover(position(9,5), Direction.WEST, planet(10));
 
     //WHEN
     rover.execute("brf");
 
     //THEN
-    assertThat(rover,is(rover(position(0, 6), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(0, 6), Direction.NORTH, planet(10))));
   }
   @Test
   void roverContinueMoveAfterCorssTheBorderSouth(){
     //GIVEN
-    Rover rover = new Rover(position(5,0), Direction.S, planet(10));
+    Rover rover = new Rover(position(5,0), Direction.SOUTH, planet(10));
 
     //WHEN
     rover.execute("flf");
 
     //THEN
-    assertThat(rover,is(rover(position(6, 9), Direction.E, planet(10))));
+    assertThat(rover,is(rover(position(6, 9), Direction.EAST, planet(10))));
   }
   @Test
   void roverForwardNorthObstacle(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10, obstacles(obstacle(5, 6))));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10, obstacles(obstacle(5, 6))));
 
     //WHEN
     Exception exception = assertThrows(ObstacleException.class, () -> {
@@ -428,13 +428,13 @@ class RoverTest {
     });
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.NORTH, planet(10))));
     assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (5, 6)")));
   }
   @Test
   void roverBackwardNorthObstacle(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10, obstacles(obstacle(5, 4))));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10, obstacles(obstacle(5, 4))));
 
     //WHEN
     Exception exception = assertThrows(ObstacleException.class, () -> {
@@ -442,13 +442,13 @@ class RoverTest {
     });
 
     //THEN
-    assertThat(rover,is(rover(position(5, 5), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(5, 5), Direction.NORTH, planet(10))));
     assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (5, 4)")));
   }
   @Test
   void roverObstacleInCommands(){
     //GIVEN
-    Rover rover = new Rover(position(5,5), Direction.N, planet(10, obstacles(obstacle(2, 4))));
+    Rover rover = new Rover(position(5,5), Direction.NORTH, planet(10, obstacles(obstacle(2, 4))));
 
     //WHEN
     Exception exception = assertThrows(ObstacleException.class, () -> {
@@ -456,13 +456,13 @@ class RoverTest {
     });
 
     //THEN
-    assertThat(rover,is(rover(position(3, 4), Direction.W, planet(10))));
+    assertThat(rover,is(rover(position(3, 4), Direction.WEST, planet(10))));
     assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (2, 4)")));
   }
   @Test
   void roverMultipleObstaclesInCommands(){
     //GIVEN
-    Rover rover = new Rover(position(0,0), Direction.N, planet(10, obstacles(
+    Rover rover = new Rover(position(0,0), Direction.NORTH, planet(10, obstacles(
             obstacle(2, 4), obstacle(1, 4), obstacle(0, 0))));
 
     //WHEN
@@ -471,7 +471,7 @@ class RoverTest {
     });
 
     //THEN
-    assertThat(rover,is(rover(position(1, 3), Direction.N, planet(10))));
+    assertThat(rover,is(rover(position(1, 3), Direction.NORTH, planet(10))));
     assertTrue(exception.getMessage().contains(messageError("The rover has encountered an obstacle in (1, 4)")));
   }
 

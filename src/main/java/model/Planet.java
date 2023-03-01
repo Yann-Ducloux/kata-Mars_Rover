@@ -5,26 +5,26 @@ import exception.ObstacleException;
 import java.util.Set;
 
 public class Planet {
-    private int dimension;
-    private Set<Obstacle> obstacles;
+    private final int dimension;
+    private final Set<Obstacle> obstacles;
 
     public Planet(int dimension, Set<Obstacle> obstacles) {
         this.dimension = dimension;
         this.obstacles = obstacles;
     }
 
-    public boolean inUpperBorder(int value) {
+    public boolean coordinateInUpperBorder(int value) {
         return (value == maxValue());
     }
 
-    public boolean inLowerBorder(int value) {
+    public boolean coordinateInLowerBorder(int value) {
         return (value == 0);
     }
 
     public int maxValue() {
         return dimension-1;
     }
-    public void isObstacle(Position position){
+    public void obstacleInCoordinate(Position position){
         if (obstacles != null && position.matchObstacle(this.obstacles)) {
             throw new ObstacleException(position);
         }

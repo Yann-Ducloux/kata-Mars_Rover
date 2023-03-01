@@ -2,67 +2,57 @@ package model;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class Position extends Coordinate {
 
     public Position(int x, int y) {
         super(x, y);
     }
-    public Position(Position position) {
-        super(position.getX(), position.getY());
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 
     public Position forward(Direction direction, Planet planet) {
         switch (direction) {
-            case N:
+            case NORTH:
                 return yIncrease(planet);
-            case S:
+            case SOUTH:
                 return yDecreases(planet);
-            case E:
+            case EAST:
                 return xIncrease(planet);
-            case W:
+            case WEST:
                 return xDecreases(planet);
             default:
-                throw new RuntimeException();
+                throw new RuntimeException("this was not supposed to happen");
         }
     }
     public Position backward(Direction direction, Planet planet) {
         switch (direction) {
-            case N:
+            case NORTH:
                 return yDecreases(planet);
-            case S:
+            case SOUTH:
                 return yIncrease(planet);
-            case E:
+            case EAST:
                 return xDecreases(planet);
-            case W:
+            case WEST:
                 return xIncrease(planet);
             default:
-                throw new RuntimeException();
+                throw new RuntimeException("this was not supposed to happen");
         }
     }
 
     private Position xIncrease(Planet planet){
-        return planet.inUpperBorder(this.x) ? new Position(0, this.y) : new Position(this.x+1, this.y);
+        return planet.coordinateInUpperBorder(this.x) ? new Position(0, this.y) : new Position(this.x+1, this.y);
     }
 
     private Position xDecreases(Planet planet){
-        return planet.inLowerBorder(this.x) ? new Position(planet.maxValue(), this.y) : new Position(this.x-1, this.y);
+        return planet.coordinateInLowerBorder(this.x) ? new Position(planet.maxValue(), this.y) : new Position(this.x-1, this.y);
     }
 
     private Position yIncrease(Planet planet){
-       return planet.inUpperBorder(this.y) ? new Position(this.x, 0) : new Position(x,this.y+1);
+       return planet.coordinateInUpperBorder(this.y) ? new Position(this.x, 0) : new Position(x,this.y+1);
     }
 
     private Position yDecreases(Planet planet) {
-        return planet.inLowerBorder(this.y) ? new Position(this.x, planet.maxValue()) : new Position(this.x, this.y-1);
+        return planet.coordinateInLowerBorder(this.y) ? new Position(this.x, planet.maxValue()) : new Position(this.x, this.y-1);
     }
 
     @Override
@@ -84,6 +74,10 @@ public class Position extends Coordinate {
     }
 
     public boolean matchObstacle(Set<Obstacle> obstacles) {
-        return obstacles.stream().anyMatch(obstacle -> Objects.equals(this.x, obstacle.x) && Objects.equals(this.y, obstacle.y));
+        return obstacles.stream().anyMatch(sameCoordinate());
+    }
+
+    private Predicate<Obstacle> sameCoordinate() {
+        return obstacle -> Objects.equals(this.x, obstacle.x) && Objects.equals(this.y, obstacle.y);
     }
 }

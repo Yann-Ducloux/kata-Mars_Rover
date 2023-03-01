@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Rover {
     private Position position;
     private Direction direction;
-    private Planet planet;
+    private final Planet planet;
 
     public Rover(Position position, Direction direction, Planet planet) {
         this.position = position;
@@ -32,16 +32,16 @@ public class Rover {
     private void executeCommands(List<Command> commands) {
         for (Command command : commands) {
             switch (command) {
-                case f:
+                case FORWARD:
                     detectAndMove(this.position.forward(this.direction, this.planet));
                     break;
-                case b:
+                case BACKWARD:
                     detectAndMove(this.position.backward(this.direction, this.planet));
                     break;
-                case r:
+                case RIGHT:
                     turnRight();
                     break;
-                case l:
+                case LEFT:
                     turnLeft();
                     break;
             }
@@ -62,7 +62,7 @@ public class Rover {
     }
 
     private void detectObstacle(Position nextPosition) {
-        planet.isObstacle(nextPosition);
+        planet.obstacleInCoordinate(nextPosition);
     }
 
     @Override
