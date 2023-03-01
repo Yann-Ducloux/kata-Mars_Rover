@@ -11,32 +11,20 @@ public class Position extends Coordinate {
     }
 
     public Position forward(Direction direction, Planet planet) {
-        switch (direction) {
-            case NORTH:
-                return yIncrease(planet);
-            case SOUTH:
-                return yDecreases(planet);
-            case EAST:
-                return xIncrease(planet);
-            case WEST:
-                return xDecreases(planet);
-            default:
-                throw new RuntimeException("this was not supposed to happen");
-        }
+        return switch (direction) {
+            case NORTH -> yIncrease(planet);
+            case SOUTH -> yDecreases(planet);
+            case EAST -> xIncrease(planet);
+            case WEST -> xDecreases(planet);
+        };
     }
     public Position backward(Direction direction, Planet planet) {
-        switch (direction) {
-            case NORTH:
-                return yDecreases(planet);
-            case SOUTH:
-                return yIncrease(planet);
-            case EAST:
-                return xDecreases(planet);
-            case WEST:
-                return xIncrease(planet);
-            default:
-                throw new RuntimeException("this was not supposed to happen");
-        }
+        return switch (direction) {
+            case NORTH -> yDecreases(planet);
+            case SOUTH -> yIncrease(planet);
+            case EAST -> xDecreases(planet);
+            case WEST -> xIncrease(planet);
+        };
     }
 
     private Position xIncrease(Planet planet){
