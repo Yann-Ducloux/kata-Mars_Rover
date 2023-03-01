@@ -3,12 +3,6 @@ package model;
 import java.util.Objects;
 import java.util.Set;
 
-/**
- * The Position
- *
- * @author Yann Ducloux
- * définit la position
- */
 public class Position extends Coordinate {
 
     public Position(int x, int y) {

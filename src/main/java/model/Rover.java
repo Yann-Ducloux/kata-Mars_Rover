@@ -2,7 +2,6 @@ package model;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Rover {
     private Position position;

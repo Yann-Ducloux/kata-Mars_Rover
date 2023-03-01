@@ -2,7 +2,6 @@ package model;
 
 import exception.ObstacleException;
 
-import java.util.List;
 import java.util.Set;
 
 public class Planet {
