@@ -483,10 +483,10 @@ class RoverTest {
   }
 
   private Planet planet(int dimension) {
-    return new Planet(dimension, java.util.List.of());
+    return new Planet(dimension, Set.of());
   }
 
-  private Planet planet(int dimension, List<Obstacle> obstacles) {
+  private Planet planet(int dimension, Set<Obstacle> obstacles) {
     return new Planet(dimension, obstacles);
   }
 
@@ -495,8 +495,8 @@ class RoverTest {
     return new Obstacle(x, y);
   }
 
-  private List<Obstacle> obstacles(Obstacle... obstacles) {
-    List<Obstacle> obstacleSet = new ArrayList<>();
+  private Set<Obstacle> obstacles(Obstacle... obstacles) {
+    Set<Obstacle> obstacleSet = new HashSet<>();
     if(obstacles != null) {
         for (Obstacle obstacle: obstacles) {
           obstacleSet.add(obstacle);

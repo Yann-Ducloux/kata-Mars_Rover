@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Rover {
     private Position position;
@@ -68,5 +69,14 @@ public class Rover {
     @Override
     public int hashCode() {
         return Objects.hash(position, direction);
+    }
+
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "position=" + position +
+                ", direction=" + direction +
+                ", planet=" + planet +
+                '}';
     }
 }

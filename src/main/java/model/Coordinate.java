@@ -9,4 +9,12 @@ public abstract class Coordinate {
         this.x = x;
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        return "Coordinate{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

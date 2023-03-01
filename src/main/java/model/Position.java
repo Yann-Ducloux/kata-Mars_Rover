@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * The Position
@@ -86,5 +87,9 @@ public class Position extends Coordinate {
     @Override
     public String toString() {
         return "(" + x + ", " + y + ')';
+    }
+
+    public boolean matchObstacle(Set<Obstacle> obstacles) {
+        return obstacles.stream().anyMatch(obstacle -> Objects.equals(this.x, obstacle.x) && Objects.equals(this.y, obstacle.y));
     }
 }

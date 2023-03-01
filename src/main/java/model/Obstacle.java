@@ -23,4 +23,5 @@ public class Obstacle extends Coordinate{
         result = 31 * result + y;
         return result;
     }
+
 }

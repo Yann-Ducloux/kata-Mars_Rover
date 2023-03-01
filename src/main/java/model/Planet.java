@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class Planet {
     private int dimension;
-    private List<Obstacle> obstacles;
+    private Set<Obstacle> obstacles;
 
-    public Planet(int dimension, List<Obstacle> obstacles) {
+    public Planet(int dimension, Set<Obstacle> obstacles) {
         this.dimension = dimension;
         this.obstacles = obstacles;
     }
@@ -26,8 +26,16 @@ public class Planet {
         return dimension-1;
     }
     public void isObstacle(Position position){
-        if (obstacles != null && this.obstacles.contains(new Obstacle(position.getX(), position.getY()))) {
+        if (obstacles != null && position.matchObstacle(this.obstacles)) {
             throw new ObstacleException(position);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Planet{" +
+                "dimension=" + dimension +
+                ", obstacles=" + obstacles +
+                '}';
     }
 }
