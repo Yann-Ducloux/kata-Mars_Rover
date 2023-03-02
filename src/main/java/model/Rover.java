@@ -32,18 +32,10 @@ public class Rover {
     private void executeCommands(List<Command> commands) {
         for (Command command : commands) {
             switch (command) {
-                case FORWARD:
-                    detectAndMove(this.position.forward(this.direction, this.planet));
-                    break;
-                case BACKWARD:
-                    detectAndMove(this.position.backward(this.direction, this.planet));
-                    break;
-                case RIGHT:
-                    turnRight();
-                    break;
-                case LEFT:
-                    turnLeft();
-                    break;
+                case FORWARD  -> detectAndMove(this.position.forward(this.direction, this.planet));
+                case BACKWARD -> detectAndMove(this.position.backward(this.direction, this.planet));
+                case RIGHT    -> turnRight();
+                case LEFT     -> turnLeft();
             }
         }
     }
