@@ -14,7 +14,7 @@ Requirements
 
 ## Rules
 
-    Hardcore TDD. No Excuses!
-    Change roles (driver, navigator) after each TDD cycle.
-    No red phases while refactoring.
-    Be careful about edge cases and exceptions. We can not afford to lose a mars rover, just because the developers overlooked a null pointer.
+- Hardcore TDD. No Excuses!
+- Change roles (driver, navigator) after each TDD cycle.
+- No red phases while refactoring.
+- Be careful about edge cases and exceptions. We can not afford to lose a mars rover, just because the developers overlooked a null pointer.
